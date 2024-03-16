@@ -9,50 +9,47 @@ const Header = () => {
 
   const { user } = useSelector((state) => state.auth)
 
-  const onLogout = () =>{
+  const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
     navigate('/login')
   }
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div className="container-fluid">
-          <div className="navbar-brand">
+    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div className="container-fluid">
+        <div className="navbar-brand">
             <Link to='/' className='logo'>MELVIN MOVIES</Link>
-          </div>
-          <ul className='btn-actions'>
+        </div>
+          
+        <ul className='btn-actions'>
             {user ? (
               <li>
-                <button type="button" className="btn btn-dark" onClick={onLogout}>
-                  <Link to='/login' className='btn-link'>
-                    <FaSignOutAlt/> Logout
-                  </Link>
+                <button className="btn btn-dark" onClick={onLogout}>
+                  <FaSignOutAlt/> Logout
                 </button>
               </li>
             ): (
               <>
                 <li>
-                  <button type="button" className="btn btn-dark">
-                    <Link to='/login' className='btn-link'>
-                     <FaSignInAlt/> Login
-                    </Link>
-                  </button>
+                  <Link to='/login'>
+                    <button type="button" className="btn btn-dark">
+                     <FaSignInAlt/> Login 
+                    </button>
+                  </Link>
                 </li>
                 <li>
-                  <button type="button" className="btn btn-dark">
-                    <Link to='/register' className='btn-link'>
+                  <Link to='/register'>
+                    <button type="button" className="btn btn-dark">
                       <FaUser/> Registrar
-                    </Link>
-                  </button>
+                    </button>
+                  </Link>
                 </li>
               </>
             )}
-          </ul>
-        </div>
-      </nav>
-    </>
+        </ul>
+      </div>
+    </nav>
   )
 }
 

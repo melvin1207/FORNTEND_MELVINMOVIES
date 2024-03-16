@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
 import { reset, register } from '../features/auth/authSlice'
-import { TailSpin } from 'react-loader-spinner'
+import Spinner from "../components/Spinner"
 
 
 const Register = () => {
@@ -58,7 +58,7 @@ const Register = () => {
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
   if(isLoading){
-    return <TailSpin/>
+    return <Spinner/>
   }
 
   return (
@@ -149,8 +149,7 @@ const Register = () => {
           </div>
 
           <select className="form-select" aria-label="Default select example" id="isAdmin" name="isAdmin" value={isAdmin} onChange={onChange}>
-            <option selected>El usuario es administrador?</option>
-            <option value={true}>Si</option>
+            <option value={true} >Si</option>
             <option value={false}>No</option>
           </select>
 
