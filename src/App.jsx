@@ -4,13 +4,14 @@ import 'react-toastify/dist/ReactToastify.css'
 import MainPage from "./pages/MainPage"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-
+import Header from "./components/Header"
 
 function App() {
   return (
     <>
       <Router>
-        <div className="container">
+        <div>
+          <Header/>
           <Routes>
             <Route  path="/" element={<MainPage/>}/>
             <Route  path="/login" element={<Login/>}/>
