@@ -23,20 +23,32 @@ const Header = () => {
             <Link to='/' className='logo'>MELVIN MOVIES</Link>
           </div>
           <ul className='btn-actions'>
-            <li>
-              <button type="button" className="btn btn-dark">
-                <Link to='/login' className='btn-link'>
-                  <FaSignInAlt/> Login
-                </Link>
-              </button>
-            </li>
-            <li>
-              <button type="button" className="btn btn-dark">
-                <Link to='/register' className='btn-link'>
-                  <FaUser/> Registrar
-                </Link>
-              </button>
-            </li>
+            {user ? (
+              <li>
+                <button type="button" className="btn btn-dark" onClick={onLogout}>
+                  <Link to='/login' className='btn-link'>
+                    <FaSignOutAlt/> Logout
+                  </Link>
+                </button>
+              </li>
+            ): (
+              <>
+                <li>
+                  <button type="button" className="btn btn-dark">
+                    <Link to='/login' className='btn-link'>
+                     <FaSignInAlt/> Login
+                    </Link>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" className="btn btn-dark">
+                    <Link to='/register' className='btn-link'>
+                      <FaUser/> Registrar
+                    </Link>
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>
