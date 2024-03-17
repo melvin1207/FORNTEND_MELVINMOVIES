@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import { toast } from 'react-toastify' 
 import { FaUser } from 'react-icons/fa'
-import { reset, updateUser, login } from '../features/auth/authSlice'
+import { reset, updateUser, logout } from '../features/auth/authSlice'
 
 const UpdateUser = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +39,12 @@ const UpdateUser = () => {
         first_name, last_name, phone
       }
       dispatch(updateUser(userData, user._id))
+
+      dispatch(logout())
+      dispatch(reset())
+      navigate('/login')
     }
+
   }
 
   useEffect(() => {
@@ -48,7 +53,7 @@ const UpdateUser = () => {
     }
 
     if (!user) {
-      navigate('/')
+      navigate('/login')
     } 
 
     return () => {
