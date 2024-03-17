@@ -23,27 +23,21 @@ const getMovies = async (token) => {
     }
   }
 
-  const response = await axios.get(API_URL, config )
-
+  const response = await axios.get(API_URL, config)
   return response.data
 }
 
-//Delete Movie
-const deleteMovie = async (id, token) => {
-  const config = {
-      headers: {
-          Authorization: `Bearer ${token}`
-      }
-  }
-  const response = await axios.delete(API_URL + id, config)
-
-  return response.data
+//Actualizar likes de una pelicula
+const updateMovieLikes = async (id, token) => {
+  return (await axios({ method: 'patch', url: API_URL + 'like/' + id, headers: { 'Authorization': `Bearer ${token}` } })).data
 }
 
-const tareaService = {
+
+
+const movieService = {
   crearMovie,
   getMovies,
-  deleteMovie
+  updateMovieLikes
 }
 
-export default tareaService
+export default movieService

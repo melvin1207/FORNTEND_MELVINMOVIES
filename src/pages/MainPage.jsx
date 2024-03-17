@@ -1,8 +1,9 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { getMovies, reset } from "../features/movies/movieSlice"
+import { getMovies, reset, updateMovieLikes } from "../features/movies/movieSlice"
 import Spinner from "../components/Spinner"
+import MovieCard from "../components/MovieCard"
 
 const MainPage = () => {
   const navigate = useNavigate()
@@ -27,16 +28,11 @@ const MainPage = () => {
     return () => {
         dispatch(reset())
     }
-
-}, [user, navigate, isError, message, dispatch])
+  }, [user, navigate, isError, message, dispatch])
 
 if (isLoading) {
     return <Spinner/>
 }
-
- 
-
-
 
   return (
     <>
@@ -45,21 +41,11 @@ if (isLoading) {
           <p>Tus peliculas favoritas en un solo lugar</p>
       </section>
 
-      <section>
+      <section className="container my-5">
         {movies.length > 0 ? (
-            <div className="container my-5">
+            <div>
               {movies.map((movie) => (
-                <div className="cards" key={movie._id}>
-                <img className="cardImg" src={movie.backdrop_path} />
-                <div className="cardText">
-                    <div className="cardTitle">{movie.original_title}</div>
-                    <div className="cardDate">
-                        {movie.release_date}
-                        <span className="cardRating">{movie.vote_average}<i className="fas fa-star" /></span>
-                    </div>
-                    <div className="cardDescription">{movie.overview}</div>
-                </div>
-            </div>
+                <MovieCard key={movie._id} movie={movie}/>
               ))}
             </div>
         ) : (
