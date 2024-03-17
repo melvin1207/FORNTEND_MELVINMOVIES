@@ -18,6 +18,11 @@ const login = async (userData) => {
   return response.data
 }
 
+//Funcion para actualizar un usuario
+const  updateUser = async (id, userData, token) =>{
+  return (await axios({ method: 'patch', url: API_URL + id, headers: { 'Authorization': `Bearer ${token}` }, data: userData })).data
+}
+
 //Logout para el usuario
 const logout = () => {
   localStorage.removeItem('user')
@@ -26,6 +31,7 @@ const logout = () => {
 const authService = {
   register,
   login,
+  updateUser,
   logout
 }
 
