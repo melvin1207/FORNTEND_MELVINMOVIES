@@ -24,11 +24,21 @@ const Header = () => {
           
         <ul className='btn-actions'>
             {user ? (
-              <li>
-                <button className="btn btn-dark" onClick={onLogout}>
-                  <FaSignOutAlt/> Logout
-                </button>
-              </li>
+              <>
+                <li>
+                  <Link to='/updateUser'>
+                    <button type="button" className="btn btn-dark">
+                      <FaUser/> Actualizar Datos
+                    </button>
+                  </Link>
+                </li>
+
+                <li>
+                  <button className="btn btn-dark" onClick={onLogout}>
+                    <FaSignOutAlt/> Logout
+                  </button>
+                </li>
+              </>
             ): (
               <>
                 <li>

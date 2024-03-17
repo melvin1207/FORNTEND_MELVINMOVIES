@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Header from "./components/Header"
+import UpdateUser from "./pages/UpdateUser"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path='/' element={<MainPage />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/updateUser' element={<UpdateUser/>}/>
           </Routes>
         </div>
       </Router>
