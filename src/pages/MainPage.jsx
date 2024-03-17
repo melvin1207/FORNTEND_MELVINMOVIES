@@ -36,7 +36,7 @@ if (isLoading) {
 
   return (
     <>
-      <section className="container header my-4">
+      <section className="container header my-4 py-5">
           <h3>Bienvenido {user && user.first_name}</h3>
           <p>Tus peliculas favoritas en un solo lugar</p>
       </section>

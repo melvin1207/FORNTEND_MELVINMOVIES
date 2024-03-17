@@ -32,12 +32,18 @@ const updateMovieLikes = async (id, token) => {
   return (await axios({ method: 'patch', url: API_URL + 'like/' + id, headers: { 'Authorization': `Bearer ${token}` } })).data
 }
 
+//Actualizar dislikes de una pelicula
+const updateMovieDislikes = async (id, token) => {
+  return (await axios({ method: 'patch', url: API_URL + 'dislike/' + id, headers: { 'Authorization': `Bearer ${token}` } })).data
+}
+
 
 
 const movieService = {
   crearMovie,
   getMovies,
-  updateMovieLikes
+  updateMovieLikes,
+  updateMovieDislikes
 }
 
 export default movieService
