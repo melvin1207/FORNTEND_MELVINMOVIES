@@ -1,9 +1,9 @@
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
-import { getMovies, reset, updateMovieLikes } from "../features/movies/movieSlice"
-import Spinner from "../components/Spinner"
-import MovieCard from "../components/MovieCard"
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getMovies, reset } from '../features/movies/movieSlice'
+import Spinner from '../components/Spinner'
+import MovieCard from '../components/MovieCard'
 
 const MainPage = () => {
   const navigate = useNavigate()
@@ -13,7 +13,6 @@ const MainPage = () => {
   const { movies, isLoading, isError, isSuccess, message } = useSelector((state) => state.movie)
   
   useEffect(() => {
-
     if (isError) {
         console.log(message)
     }
@@ -21,7 +20,6 @@ const MainPage = () => {
     if (!user) {
         navigate('/login')
     } else {
-        //Hay que poner el get aqui
         dispatch(getMovies())
     }
 
@@ -30,9 +28,9 @@ const MainPage = () => {
     }
   }, [user, navigate, isError, message, dispatch])
 
-if (isLoading) {
+  if (isLoading) {
     return <Spinner/>
-}
+  }
 
   return (
     <>
@@ -43,11 +41,11 @@ if (isLoading) {
 
       <section className="container my-5">
         {movies.length > 0 ? (
-            <div>
-              {movies.map((movie) => (
-                <MovieCard key={movie._id} movie={movie}/>
-              ))}
-            </div>
+          <div>
+            {movies.map((movie) => (
+              <MovieCard key={movie._id} movie={movie}/>
+            ))}
+          </div>
         ) : (
           <h3>No hay peliculas para mostrar</h3>
         )}
