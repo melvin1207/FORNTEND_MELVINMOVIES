@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 const API_URL = 'https://backend-melvinmovies.onrender.com/api/users/'
 

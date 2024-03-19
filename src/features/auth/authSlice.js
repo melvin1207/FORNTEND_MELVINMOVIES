@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import authService from "./authService"
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import authService from './authService'
 
 //Obtener local Storage de los datos del usuario
 const user = JSON.parse(localStorage.getItem('user'))
@@ -101,7 +101,7 @@ export const authSlice = createSlice({
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(updateUser.fulfilled, (state, action) => {
+      .addCase(updateUser.fulfilled, (state) => {
         state.isLoading = false
         state.isSuccess = true
       })
