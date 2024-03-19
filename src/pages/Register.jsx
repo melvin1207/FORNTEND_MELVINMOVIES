@@ -148,7 +148,7 @@ const Register = () => {
               />
           </div>
 
-          <select className="form-select" aria-label="Default select example" id="isAdmin" name="isAdmin" value={isAdmin} onChange={onChange}>
+          <select className="form-select" id="isAdmin" name="isAdmin" value={isAdmin} onChange={onChange}>
             <option value={true} >Si</option>
             <option value={false}>No</option>
           </select>

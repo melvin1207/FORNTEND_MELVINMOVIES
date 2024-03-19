@@ -3,16 +3,32 @@ import axios from "axios"
 const API_URL = 'https://backend-melvinmovies.onrender.com/api/movies/'
 
 //Crear una pelicula
-const crearMovie = async (movieData, token) => {
-  const  config = { 
+const createMovie = async (movieData, token) => {
+  const config = {
     headers: { 
-      Authorization: `Bearer ${token}` 
-     }
-   }
+      Authorization: `Bearer ${token}`
+    }
+  }
 
-   const response = await axios.post(API_URL, movieData, config)
+  const response = await axios.post(API_URL, movieData, config)
+  return response.data
+}
 
-   return response.data
+//Actualizar una pelicula
+const updateMovie = async (id, movieData, token) => {
+  return (await axios({ method: 'patch', url: API_URL + 'update/' + id, headers: { 'Authorization': `Bearer ${token}` }, data: movieData})).data
+}
+
+//Get peliculas
+const getMovie = async (id, token) => {
+  const config ={
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.get(API_URL + id, config)
+  return response.data
 }
 
 //Get peliculas
@@ -37,7 +53,7 @@ const updateMovieDislikes = async (id, token) => {
   return (await axios({ method: 'patch', url: API_URL + 'dislike/' + id, headers: { 'Authorization': `Bearer ${token}` } })).data
 }
 
-//Get peliculas
+//Delete peliculas
 const deleteMovie = async (id, token) => {
   const config ={
     headers: {
@@ -51,12 +67,15 @@ const deleteMovie = async (id, token) => {
 
 
 
+
 const movieService = {
-  crearMovie,
+  createMovie,
+  updateMovie,
+  getMovie,
   getMovies,
   updateMovieLikes,
   deleteMovie,
-  updateMovieDislikes
+  updateMovieDislikes,
 }
 
 export default movieService

@@ -9,6 +9,39 @@ const initialState = {
   message: ''
 }
 
+//Crear una pelicula
+export const createMovie = createAsyncThunk('movies/create', async (movie, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token
+    return await movieService.createMovie(movie, token)
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
+//Update de una pelicula
+export const updateMovie = createAsyncThunk('movies/update', async (movie, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token
+    return await movieService.updateMovie(movie, token) && movieService.getMovie(movie.id, token)
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
+//Obtener una peliculas
+export const getMovie = createAsyncThunk('movies/getone', async (id, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token
+    return await movieService.getMovie(id, token)
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
 //Obtener las peliculas
 export const getMovies = createAsyncThunk('movies/get', async (_, thunkAPI) => {
   try {
@@ -61,6 +94,44 @@ export const movieSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(createMovie.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(createMovie.fulfilled, (state,action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.movies = action.payload
+      })
+      .addCase(createMovie.rejected, (state) => {
+        state.isLoading = false
+        state.isError = true
+      })
+      .addCase(updateMovie.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updateMovie.fulfilled, (state,action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.movies = action.payload
+      })
+      .addCase(updateMovie.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(getMovie.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getMovie.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.movies = action.payload
+      })
+      .addCase(getMovie.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
       .addCase(getMovies.pending, (state) => {
         state.isLoading = true
       })

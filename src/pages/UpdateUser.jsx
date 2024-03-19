@@ -15,6 +15,12 @@ const UpdateUser = () => {
     phone: 0,
   })
 
+  const [prevUserData, setPrevUserData] = useState({
+    first_name: '',
+    last_name:'',
+    phone: 0
+  })
+
   const {first_name, last_name, password, password2, phone} = formData
 
   const navigate = useNavigate()
@@ -39,14 +45,16 @@ const UpdateUser = () => {
         first_name, last_name, phone
       }
 
-      console.log(userData.phone)
+      setPrevUserData(userData)
+
+      console.log(prevUserData)
 
       if(userData.first_name === ''){
-        userData.first_name = user.first_name
+        userData.first_name = prevUserData.first_name
       } else if(userData.last_name === ''){
-        userData.last_name = user.last_name
+        userData.last_name = prevUserData.last_name
       } else if(userData.phone === 0 || userData.phone === ''){
-        userData.phone = user.phone
+        userData.phone = prevUserData.phone
       }
       toast.success('Perfil actualizado')
       dispatch(updateUser(userData, user._id))

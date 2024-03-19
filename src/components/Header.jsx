@@ -35,14 +35,6 @@ const Header = () => {
                   </li>
 
                   <li>
-                    <Link to='/updateMovies'>
-                      <button type="button" className="btn btn-dark">
-                        <FaFilm/> Actualizar Peliculas
-                      </button>
-                    </Link>
-                  </li>
-
-                  <li>
                     <Link to='/updateUser'>
                       <button type="button" className="btn btn-dark">
                         <FaUser/> Actualizar Datos
