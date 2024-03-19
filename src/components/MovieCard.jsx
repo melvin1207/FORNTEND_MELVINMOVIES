@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux"
-import { updateMovieLikes, updateMovieDislikes, deleteMovie, reset, getMovies} from "../features/movies/movieSlice"
+import { useDispatch, useSelector } from 'react-redux'
+import { updateMovieLikes, updateMovieDislikes, deleteMovie, reset, getMovies} from '../features/movies/movieSlice'
 import { toast } from 'react-toastify'
 
 
@@ -47,8 +47,7 @@ const MovieCard = ({ movie }) => {
               <div className="cardDescription">{movie.overview}</div>
             </section>
           </div>
-        </>
-       
+        </>  
       ) : (
         <>
           <img className="cardImg" src={movie.backdrop_path} />
@@ -72,8 +71,7 @@ const MovieCard = ({ movie }) => {
             <div className="cardDescription">{movie.overview}</div>
           </div>
         </>
-      )}
-            
+      )}      
     </div>
   )
 }

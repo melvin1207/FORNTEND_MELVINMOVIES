@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaUser, FaSignOutAlt, FaFilm, FaPlus } from 'react-icons/fa'
+import { FaSignInAlt, FaUser, FaSignOutAlt, FaPlus } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
@@ -23,66 +23,67 @@ const Header = () => {
         </div>
           
         <ul className='btn-actions'>
-            {user ? (
-              user.isAdmin === true ? (
-                <>
-                  <li>
-                    <Link to='/createMovie'>
-                      <button type="button" className="btn btn-dark">
-                        <FaPlus/> Añadir una pelicula
-                      </button>
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link to='/updateUser'>
-                      <button type="button" className="btn btn-dark">
-                        <FaUser/> Actualizar Datos
-                      </button>
-                    </Link>
-                  </li>
-
-                  <li>
-                    <button className="btn btn-dark" onClick={onLogout}>
-                      <FaSignOutAlt/> Logout
-                    </button>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <Link to='/updateUser'>
-                      <button type="button" className="btn btn-dark">
-                        <FaUser/> Actualizar Datos
-                      </button>
-                    </Link>
-                  </li>
-
-                  <li>
-                    <button className="btn btn-dark" onClick={onLogout}>
-                      <FaSignOutAlt/> Logout
-                    </button>
-                  </li>
-                </>
-              )
-            ): (
+          {user ? (
+            user.isAdmin === true ? (
               <>
                 <li>
-                  <Link to='/login'>
+                  <Link to='/createMovie'>
                     <button type="button" className="btn btn-dark">
-                     <FaSignInAlt/> Login 
+                      <FaPlus/> Añadir una pelicula
                     </button>
                   </Link>
                 </li>
+
                 <li>
-                  <Link to='/register'>
+                  <Link to='/updateUser'>
                     <button type="button" className="btn btn-dark">
-                      <FaUser/> Registrar
+                      <FaUser/> Actualizar Datos
                     </button>
                   </Link>
+                </li>
+
+                <li>
+                  <button className="btn btn-dark" onClick={onLogout}>
+                    <FaSignOutAlt/> Logout
+                  </button>
                 </li>
               </>
-            )}
+            ) : (
+              <>
+                <li>
+                  <Link to='/updateUser'>
+                    <button type="button" className="btn btn-dark">
+                      <FaUser/> Actualizar Datos
+                    </button>
+                  </Link>
+                </li>
+
+                <li>
+                  <button className="btn btn-dark" onClick={onLogout}>
+                    <FaSignOutAlt/> Logout
+                  </button>
+                </li>
+              </>
+            )
+          ): (
+            <>
+              <li>
+                <Link to='/login'>
+                  <button type="button" className="btn btn-dark">
+                   <FaSignInAlt/> Login 
+                  </button>
+                </Link>
+              </li>
+                
+              <li>
+                <Link to='/register'>
+                  <button type="button" className="btn btn-dark">
+                    <FaUser/> Registrar
+                  </button>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
