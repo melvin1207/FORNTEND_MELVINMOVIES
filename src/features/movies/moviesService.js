@@ -37,12 +37,25 @@ const updateMovieDislikes = async (id, token) => {
   return (await axios({ method: 'patch', url: API_URL + 'dislike/' + id, headers: { 'Authorization': `Bearer ${token}` } })).data
 }
 
+//Get peliculas
+const deleteMovie = async (id, token) => {
+  const config ={
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.delete(API_URL + 'destroy/' + id, config)
+  return response.data
+}
+
 
 
 const movieService = {
   crearMovie,
   getMovies,
   updateMovieLikes,
+  deleteMovie,
   updateMovieDislikes
 }
 

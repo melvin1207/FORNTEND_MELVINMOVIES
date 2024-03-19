@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
-import { updateMovieLikes, updateMovieDislikes} from "../features/movies/movieSlice"
+import { updateMovieLikes, updateMovieDislikes, deleteMovie, reset, getMovies} from "../features/movies/movieSlice"
+import { toast } from 'react-toastify'
 
 
 
@@ -7,6 +8,15 @@ const MovieCard = ({ movie }) => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
+
+  const onClick = (e) => {
+    e.preventDefault()
+
+    dispatch(deleteMovie(movie._id))
+    toast.success('Pelicula eliminada')
+    dispatch(reset())
+  }
+
   return (
     <div className="cards">
       {user.isAdmin === true ? (
@@ -14,7 +24,7 @@ const MovieCard = ({ movie }) => {
           <img className="cardImg" src={movie.backdrop_path} />
           <div className="cardText d-flex justify-content-evenly">
             <section className="d-flex justify-content-end"> 
-              <button type="button" className="btn btn-danger rounded-circle btn-eliminate">X</button>
+              <button onClick={onClick} type="button" className="btn btn-danger rounded-circle btn-eliminate">X</button>
             </section>
 
             <section>
