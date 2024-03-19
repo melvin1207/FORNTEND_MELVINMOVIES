@@ -135,3 +135,11 @@ li {
   z-index: 11;
   top: 0;
 }
+
+.btn-eliminate{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

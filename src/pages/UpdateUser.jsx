@@ -38,6 +38,16 @@ const UpdateUser = () => {
       const userData = {
         first_name, last_name, phone
       }
+
+      console.log(userData.phone)
+
+      if(userData.first_name === ''){
+        userData.first_name = user.first_name
+      } else if(userData.last_name === ''){
+        userData.last_name = user.last_name
+      } else if(userData.phone === 0 || userData.phone === ''){
+        userData.phone = user.phone
+      }
       toast.success('Perfil actualizado')
       dispatch(updateUser(userData, user._id))
       dispatch(reset())

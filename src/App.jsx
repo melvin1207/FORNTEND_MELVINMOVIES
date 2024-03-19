@@ -7,6 +7,7 @@ import Register from "./pages/Register"
 import Header from "./components/Header"
 import UpdateUser from "./pages/UpdateUser"
 import UpdateMovies from "./pages/UpdateMovies"
+import CreateMovie from "./pages/CreateMovie"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/updateUser' element={<UpdateUser/>}/>
             <Route path='/updateMovies' element={<UpdateMovies/>}/>
+            <Route path='/createMovie' element={<CreateMovie/>}/>
           </Routes>
         </div>
       </Router>
