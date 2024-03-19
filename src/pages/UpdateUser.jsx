@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import { toast } from 'react-toastify' 
 import { FaUser } from 'react-icons/fa'
-import { reset, updateUser, logout } from '../features/auth/authSlice'
+import { reset, updateUser, logout, deleteUser } from '../features/auth/authSlice'
 
 const UpdateUser = () => {
   const [formData, setFormData] = useState({
@@ -38,23 +38,31 @@ const UpdateUser = () => {
       const userData = {
         first_name, last_name, phone
       }
+      toast.success('Perfil actualizado')
       dispatch(updateUser(userData, user._id))
-
-      dispatch(logout())
       dispatch(reset())
-      navigate('/login')
     }
+  }
 
+  const onSubmitDelete = (e) => {
+    e.preventDefault()
+
+    if(password !== password2 || first_name !== user.first_name || last_name !== user.last_name){
+      toast.error('Los passwords no coinciden')
+    } else{
+      
+      toast.success('Perfil eliminado')
+      dispatch(deleteUser(user._id))
+      dispatch(logout())
+      navigate('/login')
+      dispatch(reset())
+    }
   }
 
   useEffect(() => {
     if(isError){
       toast.error(message)
     }
-
-    if (!user) {
-      navigate('/login')
-    } 
 
     return () => {
       dispatch(reset())
@@ -70,9 +78,9 @@ const UpdateUser = () => {
       <section className="container py-5">
         <section className="container header">
           <h4><FaUser/> Bienvenido aqui podra cambiar los datos personales que requiera</h4>
-          <p>Por favor ingrese la información que necesite cambiar en los campos correspondientes</p>
+          <p>Por favor ingrese la información que necesite cambiar en los campos correspondientes, solo puede cambiar su nombre, apellidos o numero de telefono</p>
         </section>
-
+        
         <form onSubmit={onSubmit}>
           <div className="mb-3">
             <label htmlFor="first_name" className="form-label">Nombre</label>
@@ -140,8 +148,21 @@ const UpdateUser = () => {
           </div>
 
           <button type="submit" className="btn btn-success my-3">Actualizar datos</button>
+
+
+          <section className="d-flex justify-content-center flex-column my-3">
+            <label className="form-label">Si quiere eliminar los datos ingrese los datos solicitados y de click al boton eliminar</label>
+            <button type="button" onClick={onSubmitDelete} className="btn btn-danger my-1">Borrar Usuario</button>
+          </section>
+
         </form>
+
+        <section className="d-flex justify-content-end">
+          
+        </section>
       </section>
+
+      
     </>
   )
 }

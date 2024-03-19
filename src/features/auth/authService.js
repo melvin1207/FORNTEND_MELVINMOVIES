@@ -20,7 +20,20 @@ const login = async (userData) => {
 
 //Funcion para actualizar un usuario
 const  updateUser = async (id, userData, token) =>{
-  return (await axios({ method: 'patch', url: API_URL + id, headers: { 'Authorization': `Bearer ${token}` }, data: userData })).data
+  const { data } = await axios({ method: 'patch', url: API_URL + id, headers: { 'Authorization': `Bearer ${token}` }, data: userData })
+  return data
+}
+
+//Funcion para eliminar un usuario
+const  deleteUser = async (id, token) => {
+  const config ={
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.delete(API_URL + 'destroy/' + id, config)
+  return response.data
 }
 
 //Logout para el usuario
@@ -32,6 +45,7 @@ const authService = {
   register,
   login,
   updateUser,
+  deleteUser,
   logout
 }
 
