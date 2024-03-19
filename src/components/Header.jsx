@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaUser, FaSignOutAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaUser, FaSignOutAlt, FaFilm } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
@@ -24,21 +24,47 @@ const Header = () => {
           
         <ul className='btn-actions'>
             {user ? (
-              <>
-                <li>
-                  <Link to='/updateUser'>
-                    <button type="button" className="btn btn-dark">
-                      <FaUser/> Actualizar Datos
-                    </button>
-                  </Link>
-                </li>
+              user.isAdmin === true ? (
+                <>
+                  <li>
+                    <Link to='/updateMovies'>
+                      <button type="button" className="btn btn-dark">
+                        <FaFilm/> Actualizar Peliculas
+                      </button>
+                    </Link>
+                  </li>
 
-                <li>
-                  <button className="btn btn-dark" onClick={onLogout}>
-                    <FaSignOutAlt/> Logout
-                  </button>
-                </li>
-              </>
+                  <li>
+                    <Link to='/updateUser'>
+                      <button type="button" className="btn btn-dark">
+                        <FaUser/> Actualizar Datos
+                      </button>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <button className="btn btn-dark" onClick={onLogout}>
+                      <FaSignOutAlt/> Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to='/updateUser'>
+                      <button type="button" className="btn btn-dark">
+                        <FaUser/> Actualizar Datos
+                      </button>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <button className="btn btn-dark" onClick={onLogout}>
+                      <FaSignOutAlt/> Logout
+                    </button>
+                  </li>
+                </>
+              )
             ): (
               <>
                 <li>
