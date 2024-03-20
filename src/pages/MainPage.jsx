@@ -18,7 +18,7 @@ const MainPage = () => {
     }
 
     if (!user) {
-        navigate('/login')
+        navigate('/')
     } else {
         dispatch(getMovies())
     }

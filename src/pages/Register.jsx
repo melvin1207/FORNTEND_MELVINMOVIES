@@ -51,7 +51,7 @@ const Register = () => {
     }
 
     if(isSuccess){
-      navigate('/login')
+      navigate('/')
     }
 
     dispatch(reset())

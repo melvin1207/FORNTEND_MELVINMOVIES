@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { reset, createMovie } from '../features/movies/movieSlice'
 import Spinner from '../components/Spinner'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 const CreateMovie = () => {
@@ -21,6 +22,7 @@ const CreateMovie = () => {
   const {adult,backdrop_path, original_language, original_title, overview, popularity, poster_path, release_year, title} = formData
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
@@ -39,6 +41,7 @@ const CreateMovie = () => {
     }
     dispatch(createMovie(movieData))
     toast.success('Pelicula nueva creada')
+    navigate('/mainPage')
     dispatch(reset())
   }
 
@@ -161,6 +164,7 @@ const CreateMovie = () => {
 
           <label htmlFor="adult" className="form-label">Es para adultos?</label>
           <select className="form-select" id="adult" name="adult" value={adult} onChange={onChange}>
+            <option value="Selected" selected disabled="disabled">Selecciona...</option>
             <option value={true} >Si</option>
             <option value={false}>No</option>
           </select>

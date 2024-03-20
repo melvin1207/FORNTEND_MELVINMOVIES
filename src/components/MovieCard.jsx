@@ -22,7 +22,7 @@ const MovieCard = ({ movie }) => {
       {user.isAdmin === true ? (
         <>
           <img className="cardImg" src={movie.backdrop_path} />
-          <div className="cardText d-flex justify-content-evenly">
+          <div className="cardText d-flex justify-content-between py-4">
             <section className="d-flex justify-content-end"> 
               <button onClick={onClick} type="button" className="btn btn-danger rounded-circle btn-eliminate">X</button>
             </section>

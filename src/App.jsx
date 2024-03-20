@@ -15,8 +15,8 @@ function App() {
         <div>
           <Header/>
           <Routes>
-            <Route path='/' element={<MainPage />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/mainPage' element={<MainPage />} />
+            <Route path='/' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/updateUser' element={<UpdateUser/>}/>
             <Route path='/createMovie' element={<CreateMovie/>}/>

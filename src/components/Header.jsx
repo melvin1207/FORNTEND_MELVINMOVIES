@@ -12,14 +12,14 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    navigate('/login')
+    navigate('/')
   }
 
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
         <div className="navbar-brand">
-            <Link to='/' className='logo'>MELVIN MOVIES</Link>
+            <Link to='/mainPage' className='logo'>MELVIN MOVIES</Link>
         </div>
           
         <ul className='btn-actions'>
@@ -68,7 +68,7 @@ const Header = () => {
           ): (
             <>
               <li>
-                <Link to='/login'>
+                <Link to='/'>
                   <button type="button" className="btn btn-dark">
                    <FaSignInAlt/> Login 
                   </button>

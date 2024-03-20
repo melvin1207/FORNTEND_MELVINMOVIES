@@ -72,7 +72,7 @@ const UpdateUser = () => {
       toast.success('Perfil eliminado')
       dispatch(deleteUser(user._id))
       dispatch(logout())
-      navigate('/login')
+      navigate('/')
       dispatch(reset())
     }
   }
